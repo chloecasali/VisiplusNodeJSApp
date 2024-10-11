@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: database
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: nodejs
+      MONGO_INITDB_ROOT_PASSWORD: nodejs
+
+volumes:
+  mongo_data:
+    driver: local
