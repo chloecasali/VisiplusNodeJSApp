@@ -7,12 +7,12 @@ module.exports = async (req, res, next) => {
   try {
     const token = req.headers["x-access-token"];
     if (!token) {
-      throw "No token provided";
+      throw "not token";
     }
 
     const decoded = jwt.verify(token, config.secretJwtToken);
 
-    const user = await User.findById(decoded.userId).select("-password");
+    const user = await User.find(decoded.userId).select("-password");
     if (!user) {
       throw "User not found";
     }
